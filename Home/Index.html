@@ -5,108 +5,250 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>AC5</title>
+    <title>Chat Fast Message</title>
 
     <style>
         body {
-            padding: 5px;
+            padding: 120px 300px;
             display: block;
-            margin: 100px;
         }
 
-        .title {
-            color:#4169E1;
-            font-family:courier; 
-        }
-
-        .navbar-collapse {
-            padding: 20px;
-            text-align: center;
-            background-color: #F0FFF0;
-        }
-
-        a:link, a:visited {
-            background-color: white;
-            color: black;
-            border: 2px solid #6495ED;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
+        *, *:before, *:after { 
+            margin:0;
+            padding:0;
+            font-family: Arial,sans-serif;
         }
     
-        a:hover, a:active {
-            background-color: #6495ED;
-            color: white;
+        /* remove a linha dos links */
+        a{
+            text-decoration: none;
+        }
+    
+        /* esconde as ancoras da tela */
+        a.links{
+            display: none;
+        }
+
+        .content{   
+            margin: 0px auto;
+            position: relative;   
+        }
+
+        h1{
+            color: #066a75;
+            padding: 2px 0 10px 0;
+            font-family: Arial,sans-serif;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        h1:after{
+            content: ' ';
+            display: block;
+            width: 100%;
+            height: 2px;
+            margin-top: 10px;
+            background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+            background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+        }
+
+        h2{
+            color: #066a75;
+            font-family: Arial,sans-serif;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 20px;
         }
 
         p{
-            padding: 8px;
-            background-color: #ADD8E6;
-            border: 2px solid #6495ED;
-
-        }
-
-        input[type=text], input[type=email]{
-            width: 30%;
-            padding: 6px 10px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            box-sizing: border-box;
-            border: 3px solid #ccc;
-            -webkit-transition: 0.5s;
-            transition: 0.5s;
-            outline: none;
-        }
-
-        input[type=text]:focus, input[type=email]:focus {
-            border: 3px solid #555;
-        }
-
-        textarea {
-            width: 30%;
-            height: 130px;
-            padding: 12px 20px;
-            box-sizing: border-box;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            background-color: #f8f8f8;
-            resize: none;
-        }
-
-        .button{
-            background-color: #00a5a0;
-            border: none;
-            color: white;
-            padding: 16px 32px;
-            text-decoration: none;
-            margin: 4px 2px;
-            cursor: pointer;
+            margin-bottom:15px;
+            text-align: center;          
         }
         
-        form {
-            margin: 10px;
-            padding: 20px 15px;
+        .content p:first-child{
+            margin: 0px;
+        }
+        
+        label{
+            color: #405c60;
+            position: relative;
         }
 
+        /* placeholder */
+            ::-webkit-input-placeholder  {
+            color: #bebcbc; 
+            font-style: italic;
+        }
+        
+        input:-moz-placeholder,
+        textarea:-moz-placeholder{
+            color: #bebcbc;
+            font-style: italic;
+        }
+
+        input {
+            outline: none;
+        }
+    
+        /*estilo dos input*/
+        input:not([type="checkbox"]){
+            width: 95%;
+            margin-top: 4px;
+            padding: 10px;    
+            border: 1px solid #b2b2b2;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+            box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+            -webkit-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+        }
+    
+        /*estilo do botão submit */
+        input[type="submit"]{
+            width: 217px;
+            cursor: pointer;  
+            background: rgb(61, 157, 179);
+            padding: 8px 5px;
+            color: #fff;
+            font-size: 20px;  
+            border: 1px solid #fff;   
+            text-shadow: 0 1px 1px #333;
+            border-radius: 5px;
+            transition: all 0.2s linear;
+        }
+    
+        /*estilo do botão submit no hover */
+        input[type="submit"]:hover{
+            background: #4ab3c6;
+        }
+
+        .link{
+            position: absolute;
+            background: #e1eaeb;
+            color: #7f7c7c;
+            left: 0px;
+            height: 20px;
+            width: 440px;
+            padding: 17px 30px 20px 30px;
+            font-size: 16px;
+            text-align: right;
+            border-top: 1px solid #dbe5e8;
+            -webkit-border-radius: 0 0  5px 5px;
+            border-radius: 0 0  5px 5px;
+        }
+    
+        .link a {
+            font-weight: bold;
+            background: #f7f8f1;
+            padding: 6px;
+            color: rgb(29, 162, 193);
+            margin-left: 10px;
+            border: 1px solid #cbd518;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;  
+            -webkit-transition: all 0.4s linear;
+            transition: all 0.4s  linear;
+        }
+    
+        .link a:hover {
+            color: #39bfd7;
+            background: #f7f7f7;
+            border: 1px solid #4ab3c6;
+        }
+
+        #cadastro{
+            position: absolute;
+            top: 0px;
+            width: max-content;  
+            padding: 18px 6% 18px 6%;
+            background: #f7f7f7;
+            border: 1px solid rgba(147, 184, 189,0.8);
+            border-radius: 5px;
+            animation-duration: 0.5s;
+            animation-timing-function: ease;
+            animation-fill-mode: both;
+        }
+
+        /* Efeito ao clicar no botão*/
+        #paracadastro:target ~ .content #cadastro{
+            z-index: 2;
+            -webkit-animation-name: fadeInLeft;
+            animation-name: fadeInLeft;
+            -webkit-animation-delay: .1s;
+            animation-delay: .1s;
+        }
+        
+        /*fadeInLeft*/
+        @-webkit-keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: translateX(0);
+            }
+        }
+    
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    
+        /*fadeOutLeft*/
+        @-webkit-keyframes fadeOutLeft {
+            0% {
+                opacity: 1;
+                -webkit-transform: translateX(0);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translateX(-20px);
+            }
+        }
+    
+        @keyframes fadeOutLeft {
+            0% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+        }
     </style>
 
 </head>
-<body class="background">
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <h1 class="title">CHAT</h1>
+<body>
+    <div class="container" >
+        <a class="links" id="paracadastro"></a>
+         
+        <div class="content">      
+          <div id="cadastro">
+            <h1>Seja bem vindos ao Fast Message!</h1><br>
+            <h2>Autores:</h2>
+                <p>Dalvan Trajano dos Santos</br>
+                Matheus Alcantara de Jesus<br>
+                Thais Fernanda Melo Santos</p>
 
-<h2>Seja bem vindo ao Fast Message</h2><br>
-    <h3>Autores:</h3>
-    <p>Dalvan Trajano dos Santos</br>
-    Matheus Alcantara de Jesus<br>
-    Thais Fernanda Melo Santos</p>
-
-    <a href="Login.html">Login</a>
-    <a href="Cadastrar.html">Novo usuário</a>
-    <a href="Enviar.html">Enviar Mensagem</a>
+                <p> 
+                    <a href="Login.html"><input type="submit" value="Login" /></a>
+                    <a href="Cadastrar.html"><input type="submit" value="Novo usuário" /></a>
+                    <a href="Enviar.html"></a><input type="submit" value="Enviar Mensagem" /></a>
+                </p>
+            </div>
+        </div>
     </div>
-
+</div>
 </body>
         
 </html>
