@@ -246,9 +246,9 @@
 
         document.getElementById("saida").innerHTML = "Sua mensagem foi enviada";
         var data = {
-        "to":document.getElementById("de").value,
+        "to":document.getElementById("to").value,
         "msg":document.getElementById("msg").value,
-        "from":document.getElementById("para").value};
+        "from":document.getElementById("from").value};
         var jsondata = JSON.stringify(data);
         var url = "https://7q47isbs2i.execute-api.sa-east-1.amazonaws.com/Teste01";
         xhttp.open("POST", url);
@@ -273,10 +273,10 @@
             <table>
                 <tr>
                 <td><LABEL for="from">Remetente:</LABEL>
-                <td><INPUT Type = "Text" id="para" Name="from" Size="20" MaxLength="50"><BR></INPUT>
+                <td><INPUT Type = "Text" id="from" Name="from" Size="20" MaxLength="50"><BR></INPUT>
                 <tr>
                 <td><LABEL for="to">Destinatário:</LABEL>
-                <td><INPUT Type = "Text" id="de" Name="to" Size="20" MaxLength="50"><BR></INPUT>
+                <td><INPUT Type = "Text" id="to" Name="to" Size="20" MaxLength="50"><BR></INPUT>
                 <tr>
                 <td><LABEL for="msg">Mensagem:</LABEL>
                 <td><INPUT Type = "Text" id="msg" Name="msg" Size="100" MaxLength="160"><BR></INPUT>
