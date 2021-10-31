@@ -1,60 +1,295 @@
 <html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    <title>Chat Fast Message</title>
+
+    <style>
+        body {
+            padding: 120px 210px;
+            display: block;
+        }
+
+        *, *:before, *:after { 
+            margin:0;
+            padding:0;
+            font-family: Arial,sans-serif;
+        }
+    
+        /* remove a linha dos links */
+        a{
+            text-decoration: none;
+        }
+    
+        /* esconde as ancoras da tela */
+        a.links{
+            display: none;
+        }
+
+        .content{   
+            margin: 0px auto;
+            position: relative;   
+        }
+
+        h1{
+            color: #066a75;
+            padding: 2px 0 10px 0;
+            font-family: Arial,sans-serif;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        h1:after{
+            content: ' ';
+            display: block;
+            width: 100%;
+            height: 2px;
+            margin-top: 10px;
+            background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+            background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+        }
+
+        h2{
+            color: #066a75;
+            font-family: Arial,sans-serif;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        p{
+            margin-bottom:15px;
+            text-align: center;          
+        }
+        
+        .content p:first-child{
+            margin: 0px;
+        }
+        
+        label{
+            color: #405c60;
+            position: relative;
+        }
+
+        /* placeholder */
+            ::-webkit-input-placeholder  {
+            color: #bebcbc; 
+            font-style: italic;
+        }
+        
+        input:-moz-placeholder,
+        textarea:-moz-placeholder{
+            color: #bebcbc;
+            font-style: italic;
+        }
+
+        input {
+            outline: none;
+        }
+    
+        /*estilo dos input*/
+        input:not([type="checkbox"]){
+            width: 95%;
+            margin-top: 4px;
+            padding: 10px;    
+            border: 1px solid #b2b2b2;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+            box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+            -webkit-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+        }
+    
+        /*estilo do botão submit */
+        input[type="submit"]{
+            width: 217px;
+            cursor: pointer;  
+            background: rgb(61, 157, 179);
+            padding: 8px 5px;
+            color: #fff;
+            font-size: 20px;  
+            border: 1px solid #fff;   
+            text-shadow: 0 1px 1px #333;
+            border-radius: 5px;
+            transition: all 0.2s linear;
+        }
+    
+        /*estilo do botão submit no hover */
+        input[type="submit"]:hover{
+            background: #4ab3c6;
+        }
+
+        .link{
+            position: absolute;
+            background: #e1eaeb;
+            color: #7f7c7c;
+            left: 0px;
+            height: 20px;
+            width: 440px;
+            padding: 17px 30px 20px 30px;
+            font-size: 16px;
+            text-align: right;
+            border-top: 1px solid #dbe5e8;
+            -webkit-border-radius: 0 0  5px 5px;
+            border-radius: 0 0  5px 5px;
+        }
+    
+        .link a {
+            font-weight: bold;
+            background: #f7f8f1;
+            padding: 6px;
+            color: rgb(29, 162, 193);
+            margin-left: 10px;
+            border: 1px solid #cbd518;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;  
+            -webkit-transition: all 0.4s linear;
+            transition: all 0.4s  linear;
+        }
+    
+        .link a:hover {
+            color: #39bfd7;
+            background: #f7f7f7;
+            border: 1px solid #4ab3c6;
+        }
+
+        #cadastro{
+            position: absolute;
+            top: 0px;
+            width: max-content;  
+            padding: 18px 6% 18px 6%;
+            background: #f7f7f7;
+            border: 1px solid rgba(147, 184, 189,0.8);
+            border-radius: 5px;
+            animation-duration: 0.5s;
+            animation-timing-function: ease;
+            animation-fill-mode: both;
+        }
+
+        /* Efeito ao clicar no botão*/
+        #paracadastro:target ~ .content #cadastro{
+            z-index: 2;
+            -webkit-animation-name: fadeInLeft;
+            animation-name: fadeInLeft;
+            -webkit-animation-delay: .1s;
+            animation-delay: .1s;
+        }
+        
+        /*fadeInLeft*/
+        @-webkit-keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: translateX(0);
+            }
+        }
+    
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    
+        /*fadeOutLeft*/
+        @-webkit-keyframes fadeOutLeft {
+            0% {
+                opacity: 1;
+                -webkit-transform: translateX(0);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translateX(-20px);
+            }
+        }
+    
+        @keyframes fadeOutLeft {
+            0% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+        }
+    </style>
+
+    <script>
+
+        function enviaMsg() {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            console.log("readyState:" + this.readyState);
+            console.log("status:" + this.status);
+
+            if (this.readyState == 4 && this.status == 200) {
+            imprimeResposta(this);
+            }
+        };
+
+        xhttp.onload = function() {
+            document.getElementById("resposta").innerHTML = this.responseText;
+        };
+
+        document.getElementById("saida").innerHTML = "mensagem enviada";
+        var data = {
+        "to":document.getElementById("to").value,
+        "msg":document.getElementById("msg").value,
+        "from":document.getElementById("from").value};
+        var jsondata = JSON.stringify(data);
+        var url = "https://7q47isbs2i.execute-api.sa-east-1.amazonaws.com/Teste01";
+        xhttp.open("POST", url);
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.send(jsondata);
+        }
+
+        function imprimeResposta(xml) {
+        var xmlDoc = xml.responseXML;
+        document.getElementById("resposta").innerHTML = xmlDoc;
+        }
+    </script>
+
+</head>
 <body>
-<script>
+    <div class="container" >
+        <a class="links" id="paracadastro"></a>
+        <div class="content">      
+          <div id="cadastro">
+            <h1 id="saida">Envia ao pressionar o botão</h1>
+            <br><br>
+            <table>
+                <tr>
+                <td><LABEL for="from">Remetente:</LABEL>
+                <td><INPUT Type = "Text" id="from" Name="from" Size="20" MaxLength="50"><BR></INPUT>
+                <tr>
+                <td><LABEL for="to">Destinatário:</LABEL>
+                <td><INPUT Type = "Text" id="to" Name="to" Size="20" MaxLength="50"><BR></INPUT>
+                <tr>
+                <td><LABEL for="msg">Mensagem:</LABEL>
+                <td><INPUT Type = "Text" id="msg" Name="msg" Size="100" MaxLength="160"><BR></INPUT>
+            </table>
+            
+            <input type="submit" onclick="enviaMsg()" value="Enviar" />
 
-function enviaMsg() {
-  const xhttp = new XMLHttpRequest();
-
-  xhttp.onreadystatechange = function() {
-    console.log("readyState:" + this.readyState);
-	console.log("status:" + this.status);
-
-    if (this.readyState == 4 && this.status == 200) {
-      imprimeResposta(this);
-    }
-  };
-
-  xhttp.onload = function() {
-    document.getElementById("resposta").innerHTML = this.responseText;
-  };
-
-  document.getElementById("saida").innerHTML = "mensagem enviada";
-  var data = {
-  "to":document.getElementById("to").value,
-  "msg":document.getElementById("msg").value,
-  "from":document.getElementById("from").value};
-  var jsondata = JSON.stringify(data);
-  var url = "https://uleurjpuck.execute-api.us-east-1.amazonaws.com/teste/gustavomsg-post";
-  xhttp.open("POST", url);
-  xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  xhttp.send(jsondata);
-}
-
-function imprimeResposta(xml) {
-  var xmlDoc = xml.responseXML;
-  document.getElementById("resposta").innerHTML = xmlDoc;
-}
-</script>
-
-<p id="saida">Envia ao pressionar o botão</p>
-<br><br>
-<table>
-	<tr>
-	<td><LABEL for="from">Remetente:</LABEL>
-	<td><INPUT Type = "Text" id="from" Name="from" Size="20" MaxLength="50"><BR></INPUT>
-	<tr>
-	<td><LABEL for="to">Destinatário:</LABEL>
-	<td><INPUT Type = "Text" id="to" Name="to" Size="20" MaxLength="50"><BR></INPUT>
-	<tr>
-	<td><LABEL for="msg">Mensagem:</LABEL>
-	<td><INPUT Type = "Text" id="msg" Name="msg" Size="100" MaxLength="160"><BR></INPUT>
-</table>
-
-<button type="button" onclick="enviaMsg()">Envia</button>
-
-<br><br><br>
-Resposta:
-<br>
-<span id="resposta">---------</span>
+            <br><br><br>
+            Resposta:
+            <br>
+            <span id="resposta">---------</span>
+        </div>
+    </div>
+</div>
 </body>
 </html>
