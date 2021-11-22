@@ -30,7 +30,7 @@ dynamodb = boto3.resource('dynamodb')
 
 # Conexão com a Tabela de Mensagens
 # Deve haver uma tabela com o nome abaixo:
-tableMensagens = dynamodb.Table('Mensagens')
+tableMensagens = dynamodb.Table('MensagensChat')
 
 # Conexão com o S3
 # s3 = boto3.resource('s3')
